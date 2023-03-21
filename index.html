@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="/script.js" defer></script>
+    <title>Random Recipe Finder</title>
+</head>
+<body>
+    <h1 id="app-title">Random Recipe Finder</h1>
+    <div id="search-bar">
+        <input
+            id="search-input"
+            type="text" 
+            placeholder="Search Ingredients" />
+        <button class="search-btn">Search</button>
+    </div>
+    <div id="loading" class="hidden">LOADING...</div>
+    <div class="app-desc">Can't think of what to cook for dinner? Search some of the ingredients in your pantry to get a random recipe idea!</div>
+    <div class="recipe-container hidden">
+        <div class="img-container"></div>
+        <h1 id="recipe-name">Recipe Name</h1>
+        <div class="times">
+            <h4>Total Time</h4>
+            <h4>Prep Time</h4>
+            <h4>Cook Time</h4>
+            <h4 id="total-time" class="time">N/A</h4>
+            <h4 id="prep-time" class="time">N/A</h4>
+            <h4 id="cook-time" class="time">N/A</h4>
+        </div>
+        <p id="recipe-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis culpa mollitia quae autem cumque libero quam a illum. Voluptate, illo!</p>
+        <div id="ingredients">
+            <h2>Ingredients</h2>
+            <!-- API INGREDIENT INFO WILL BE IMPLEMENTED HERE -->
+        </div>
+        <h2>Cooking Instructions</h2>
+        <ol id="instructions-list">
+            <!-- API INSTRUCTIONS INFO WILL BE IMPLEMENTED HERE -->
+        </ol>
+    </div>
+    <footer>Thomas Leonard Front-End Web Dev</footer>
+</body>
+</html>
