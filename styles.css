@@ -78,6 +78,75 @@ body{
     border-radius: 20px;
 }
 
+.menu-icon{
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    z-index: 10;
+    font-size: 32px;
+}
+
+.menu-icon:hover{
+    color: #3338;
+}
+
+.favorites-menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #d3d3d3;
+    height: 100vh;
+    width: 20vw;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 12;
+    transition: 300ms ease-in-out;
+}
+
+.menu-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+    padding: 20px 0 10px 0;
+}
+
+.close-btn{
+    font-size: 24px;
+    margin-left: 20px;
+    border: 3px solid #000;
+    border-radius: 10px;
+    padding: 3px 6px;
+    background-color: #fff;
+    transition: 100ms linear;
+}
+
+.close-btn:hover{
+    color: #fff;
+    border: 3px solid #fff;
+    background-color: rgb(255, 145, 35);
+}
+
+.closed{
+    left: -100vw;
+    opacity: 0;
+}
+
+.favorites-menu li{
+    margin-top: 20px;
+    list-style: none;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.favorites-menu li:hover{
+    background-color: rgb(255, 145, 35);
+}
+
 .recipe-container {
     
     display: flex;
@@ -126,6 +195,21 @@ body{
     color: #000a;
 }
 
+.save-btn{
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: #fff;
+    transition: 100ms linear;
+}
+
+.save-btn:hover{
+    background-color: rgb(255, 145, 35);
+}
+
 footer{
     position: absolute;
     padding: 0;
@@ -154,13 +238,22 @@ footer{
         font-size: 20px;
     }
 
+    .menu-icon{
+        position: fixed;
+        top: 10px;
+    }
+
+    .favorites-menu{
+        width: 100vw;
+    }
+
     #app-title{
         background-color: rgb(255, 145, 35);
         position: fixed;
         top: 0;
-        padding: 10px 0;
+        padding: 10px 3vw;
         width: 100vw;
-        text-align: center;
+        text-align: end;
     }
 
     .app-desc{

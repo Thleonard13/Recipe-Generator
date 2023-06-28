@@ -2,6 +2,10 @@ const searchInput = document.querySelector('#search-input')
 const searchBtn = document.querySelector('.search-btn')
 const loading = document.getElementById('loading')
 const appDesc = document.querySelector('.app-desc')
+const menuIcon = document.querySelector('.menu-icon')
+const menu = document.querySelector('.favorites-menu')
+const closeBtn = document.querySelector('.close-btn')
+const recipeList = document.querySelector('.recipe-list')
 const recipeContainer = document.querySelector(".recipe-container")
 const recipeImg = document.querySelector(".img-container")
 const recipeName = document.querySelector('#recipe-name')
@@ -11,12 +15,35 @@ const instructionsList = document.querySelector("#instructions-list")
 const totalTime = document.querySelector('#total-time')
 const cookTime = document.querySelector('#cook-time')
 const prepTime = document.querySelector('#prep-time')
+const saveBtn = document.querySelector('.save-btn')
+
+// API-KEY HAS BEEN REMOVED FOR SECURITY
+const API_KEY = ''
+let savedRecipes = []
+let currentRecipe = []
+
+const getLocalRecipes = async () => {
+    try {
+        let previouslySaved = await JSON.parse(window.localStorage.getItem("localSavedRecipes"));
+        if(previouslySaved) {
+            savedRecipes = previouslySaved
+            console.log(savedRecipes)
+            savedRecipes.forEach(recipe => displaySavedRecipe(recipe))
+        }
+    } catch (error) {
+      console.error(error);
+    }
+}
+getLocalRecipes()
+
+// if(savedRecipes.length <= 0) {
+//     recipeList.innerText = "You have no saved recipes."
+// }
 
 const options = {
 	method: 'GET',
 	headers: {
-        // API-KEY HAS BEEN REMOVED FOR SECURITY
-		'X-RapidAPI-Key': 'ENTER API-KEY HERE',
+		'X-RapidAPI-Key': API_KEY,
 		'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
 	}
 };
@@ -84,12 +111,43 @@ const printRecipe = (recipe) => {
         })
         appDesc.classList.add('hidden');
         recipeContainer.classList.remove('hidden');
+        currentRecipe = recipe;
         searchInput.value = '';
     } else {
         getRecipe();
     }
 
-} 
+}
+
+function toggleMenu() {
+    menu.classList.toggle('closed');
+}
+
+function saveRecipe(currentRecipe) {
+    if(savedRecipes.find(item => item.id === currentRecipe.id)){
+        alert('recipe is already saved')
+    } else {
+        alert('recipe saved')
+        savedRecipes.push(currentRecipe);
+        window.localStorage.setItem('localSavedRecipes', JSON.stringify(savedRecipes));
+        displaySavedRecipe(currentRecipe);
+    }
+}
+
+
+const displaySavedRecipe = (recipe) => {
+    let li = document.createElement('li');
+    if(recipe.name.length <= 20){
+        li.innerText = recipe.name;
+    } else{
+        li.innerText = recipe.name.substring(0, 20) + "..."; 
+    }
+    recipeList.appendChild(li);
+    li.addEventListener('click', () => {
+        printRecipe(recipe);
+        toggleMenu();
+    })
+}
  
 let searchQuery = '';
 
@@ -98,3 +156,6 @@ searchInput.addEventListener('input', e => {
 })
 
 searchBtn.addEventListener('click', getRecipe)
+closeBtn.addEventListener('click', toggleMenu)
+menuIcon.addEventListener('click', toggleMenu)
+saveBtn.addEventListener('click', () => saveRecipe(currentRecipe))
